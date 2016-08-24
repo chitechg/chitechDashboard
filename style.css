@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #674172;
+    width:100%;
+    height:auto;
+}
+
+
+.dashboard {
+    background-color: #eee;
+    font-size: 4vw;
+    color:#674172;
+    font-family: 'Raleway', sans-serif;
+    padding:10px;
+    height:80%;
+    margin-top: 5%;
+    margin-bottom:5%;
+}
+
+.topContainer{
+    display:flex;
+    align-items: center;
+    justify-content:space-around;
+    width:100%;
+}
+
+iframe{
+    width:100%;
+    height: 10em;
+}
+
+.dateAndTime{
+    flex-grow:2;
+    text-align:right;
+    border-left:2px solid #999;
+    margin-right:15px;
+    font-size: 3vw;
+    height: 80%;
+    width:40%;
+    align-content:center;
+    margin-top:10%;
+    margin-bottom:10%;
+}
+
+.announcement{
+    text-align: center;
+    flex-grow:3;
+    max-width: 75%;
+    padding:10px;
+}
+
+.announcement h2{
+    font-size: 4vw;
+}
+
+.announcement h4{
+    font-size: 3vw;
+}
+
+.daysOfPeaceContainer{
+    display:flex;
+    justify-content:space-around;
+    background-color: #674172;
+    color:#eee;
+    margin-top:10px;
+    clear:left;
+}
+
+.daysOfPeace{
+    flex-grow:4;
+    display:inline-flex;
+    justify-content:center;
+}
+
+
+.daysOfPeace h2, .daysOfPeace h1{
+    justify-content:space-around;
+    font-size: 3.5vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divider{
+    margin-left:25px;
+    margin-right: 25px;
+}
+
