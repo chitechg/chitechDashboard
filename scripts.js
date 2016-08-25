@@ -5,24 +5,24 @@
 
 $(document).ready(function()
 {
-    
-    daysOfPeaceNumberScript('1wUqPDTzXV8yn2Ti2WIYNL0hXl90PAqaQ0dyqhMix8Ew');
-    
+	
+	refreshAt(13,18,0);
+	
 	window.setInterval(function(){
 	
-   var globalDate = updateDate();
-   $('.date').html(globalDate);
-   
-   var globalDayType = updateDayType();
-   $('.dayType').html(globalDayType);
-   
-   var globalTime = updateClock();
-   $("#clock").html(globalTime[4]);
-  
-   var globalPeriod = updatePeriod(globalDate, globalDayType, globalTime);
-   $("#period").html(globalPeriod);
+	   var globalDate = updateDate();
+	   $('.date').html(globalDate);
+	   
+	   var globalDayType = updateDayType();
+	   $('.dayType').html(globalDayType);
+	   
+	   var globalTime = updateClock();
+	   $("#clock").html(globalTime[4]);
+	  
+	   var globalPeriod = updatePeriod(globalDate, globalDayType, globalTime);
+	   $("#period").html(globalPeriod);
 
-
+		daysOfPeaceNumberScript('1wUqPDTzXV8yn2Ti2WIYNL0hXl90PAqaQ0dyqhMix8Ew');
 
 	}, 1000);
    
@@ -33,7 +33,7 @@ function updateDate () {
 	//Date and Day Type script
 	var monthNames = [ "January", "February", "March", "April", "May", "June",
 	    "July", "August", "September", "October", "November", "December" ];
-	var dayNames= ["Sunday","Monday","Tuesday","Wed","Thursday","Friday","Saturday"];
+	var dayNames= ["Sun","Mon","Tues","Wed","Thurs","Fri","Satur"];
 	
 	var newDate = new Date();
 	newDate.setDate(newDate.getDate());  
@@ -59,35 +59,63 @@ function updateDayType (ScheduleCheck){
 	//105 days of school left after Winter break
 	//No School Days for 2015-2016 School Year
 	if ( ScheduleCheck == '1/1'   // New Year's Day
-			|| ScheduleCheck == '6/14'  // Flag Day
-			|| ScheduleCheck == '7/4'   // Independence Day
-			|| ScheduleCheck == '11/11' // Veterans Day
-			|| ScheduleCheck == '12/25' // Christmas Day
-			|| ScheduleCheck == '12/31' // New Years Day
-			|| ScheduleCheck == '1/18' // MLK Day
-			|| ScheduleCheck == '1/22' // PD Day
-			|| ScheduleCheck == '2/12' // PD Day
-			|| ScheduleCheck == '2/15' // ?
-			|| ScheduleCheck == '3/11' // PD Day
-			|| ScheduleCheck == '4/14' // PD Day
-			|| ScheduleCheck == '4/15' // PD Day
-			|| ScheduleCheck == '4/18' // Spring Break
-			|| ScheduleCheck == '4/19' // Spring Break
-			|| ScheduleCheck == '4/20' // Spring Break
-			|| ScheduleCheck == '4/21' // Spring Break
-			|| ScheduleCheck == '4/22' // Spring Break
-			|| ScheduleCheck == '5/20' // PD Day
-			|| ScheduleCheck == '5/30' // ?
-			|| ScheduleCheck == '6/3' // PD Day
-			|| ScheduleCheck == '6/20' // Summer Break
-			|| ScheduleCheck == '6/21' // Summer Break
-			|| ScheduleCheck == '6/22' // Summer Break
-			|| ScheduleCheck == '6/23' // Summer Break
-			|| ScheduleCheck == '6/24' // Summer Break
-			|| ScheduleCheck == '6/27' // Summer Break
-			|| ScheduleCheck == '6/28' // Summer Break
-			|| ScheduleCheck == '6/29' // Summer Break
-			|| ScheduleCheck == '6/30' // Summer Break
+			|| ScheduleCheck == '8/24' 
+			|| ScheduleCheck == '8/25' 
+			|| ScheduleCheck == '8/26' 
+			|| ScheduleCheck == '9/5'  
+			|| ScheduleCheck == '10/7'  
+			|| ScheduleCheck == '10/10' 
+			|| ScheduleCheck == '11/4' 
+			|| ScheduleCheck == '11/10' 
+			|| ScheduleCheck == '11/11' 
+			|| ScheduleCheck == '11/23' 
+			|| ScheduleCheck == '11/24'
+			|| ScheduleCheck == '11/25' 
+			|| ScheduleCheck == '12/23' 
+			|| ScheduleCheck == '12/24' 
+			|| ScheduleCheck == '12/25' 
+			|| ScheduleCheck == '12/26' 
+			|| ScheduleCheck == '12/27' 
+			|| ScheduleCheck == '12/28' 
+			|| ScheduleCheck == '12/29' 
+			|| ScheduleCheck == '12/30' 
+			|| ScheduleCheck == '12/31' 
+			|| ScheduleCheck == '1/2' 
+			|| ScheduleCheck == '1/3' 
+			|| ScheduleCheck == '1/4'
+			|| ScheduleCheck == '1/5' 
+			|| ScheduleCheck == '1/6' 
+			|| ScheduleCheck == '1/16' 
+			|| ScheduleCheck == '1/20' 
+			|| ScheduleCheck == '2/1' 
+			|| ScheduleCheck == '2/17' 
+			|| ScheduleCheck == '2/20' 
+			|| ScheduleCheck == '3/17' 
+			|| ScheduleCheck == '4/10' 
+			|| ScheduleCheck == '4/11' 
+			|| ScheduleCheck == '4/12'
+			|| ScheduleCheck == '4/13' 
+			|| ScheduleCheck == '4/14' 
+			|| ScheduleCheck == '4/17' 
+			|| ScheduleCheck == '5/19' 
+			|| ScheduleCheck == '5/29' 
+			|| ScheduleCheck == '6/2' 
+			|| ScheduleCheck == '6/16' 
+			|| ScheduleCheck == '6/17' 
+			|| ScheduleCheck == '6/18' 
+			|| ScheduleCheck == '6/19' 
+			|| ScheduleCheck == '6/20' 
+			|| ScheduleCheck == '6/21' 
+			|| ScheduleCheck == '6/22' 
+			|| ScheduleCheck == '6/23'
+			|| ScheduleCheck == '6/24' 
+			|| ScheduleCheck == '6/25' 
+			|| ScheduleCheck == '6/26' 
+			|| ScheduleCheck == '6/27'
+			|| ScheduleCheck == '6/28' 
+			|| ScheduleCheck == '6/29' 
+			|| ScheduleCheck == '6/30'
+			|| ScheduleCheck == '6/31' 
 			
 			){
 	  message = "No School";
@@ -105,7 +133,20 @@ function updateDayType (ScheduleCheck){
 			|| ScheduleCheck == '1/21'   // Exhibition
 			){
 	  message = "Today has a Modified schedule";
-	} else if(newDate.getDay() == 1 || newDate.getDay() == 3){
+	} 
+	
+	//abnormal A day check
+	else if ( ScheduleCheck == '9/6'   
+			|| ScheduleCheck == '9/8'   
+			){
+		message = "Today is an <span class='dayTypeLetter'>A</span> day.";
+	}
+	else if ( ScheduleCheck == '9/7'   
+			|| ScheduleCheck == '9/9'   
+			){
+		message = "Today is an <span class='dayTypeLetter'>B</span> day.";
+	}
+	  else if(newDate.getDay() == 1 || newDate.getDay() == 3){
 	  message = "Today is an <span class='dayTypeLetter'>A</span> day.";
 	} else if(newDate.getDay() == 2 || newDate.getDay() == 4){
 	  message = "Today is a <span class='dayTypeLetter'>B</span> day.";
@@ -315,4 +356,22 @@ function daysOfPeaceNumberScript (spreadsheetID){
 	      		
 	     
 	     });
+}
+
+
+function refreshAt(hours, minutes, seconds) {
+    var now = new Date();
+    var then = new Date();
+
+    if(now.getHours() > hours ||
+       (now.getHours() == hours && now.getMinutes() > minutes) ||
+        now.getHours() == hours && now.getMinutes() == minutes && now.getSeconds() >= seconds) {
+        then.setDate(now.getDate() + 1);
+    }
+    then.setHours(hours);
+    then.setMinutes(minutes);
+    then.setSeconds(seconds);
+
+    var timeout = (then.getTime() - now.getTime());
+    setTimeout(function() { window.location.reload(true); }, timeout);
 }
