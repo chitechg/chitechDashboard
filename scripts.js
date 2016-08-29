@@ -191,6 +191,7 @@ function updateClock ( )
    	  	
  }
 
+//period is broken
 function updatePeriod ( date, daytype, time ) {
 
 	date;
