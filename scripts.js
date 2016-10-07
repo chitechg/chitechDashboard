@@ -6,23 +6,40 @@
 $(document).ready(function()
 {
 	
-	refreshAt(13,18,0);
+	refreshAt(00,00,00);
+  	var countdownSec = -1;
 	
-	window.setInterval(function(){
-	
-	   var globalDate = updateDate();
+	  var globalDate = updateDate();
 	   $('.date').html(globalDate);
 	   
 	   var globalDayType = updateDayType();
 	   $('.dayType').html(globalDayType);
-	   
+	
+	
+	window.setInterval(function(){
+		
+		countdownSec -= 1;
+		
 	   var globalTime = updateClock();
 	   $("#clock").html(globalTime[4]);
 	  
 	   var globalPeriod = updatePeriod(globalDate, globalDayType, globalTime);
 	   $("#period").html(globalPeriod);
+	   
+	   if (globalPeriod == "Passing Period"){
+	   		
+	   		if((countdownSec <= 240) && (countdownSec>=0)){
+				$("#countdownPrompt").html("Seconds Left in Passing Period: ");
+	   			$("#countdown").html(countdownSec);
+	   		}
+	   		else if (countdownSec < 0){
+	   			countdownSec = 240;
+	   		}
+	   }
+		else{
+		 $("#countdown").html("");
+	   		}
 
-		daysOfPeaceNumberScript('1wUqPDTzXV8yn2Ti2WIYNL0hXl90PAqaQ0dyqhMix8Ew');
 
 	}, 1000);
    
@@ -184,8 +201,8 @@ function updateClock ( )
   	// Compose the string for display
   	var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
   	
-  	var clockVal = [currentHours, currentMinutes, currentSeconds, timeOfDay, currentTimeString]
-  	
+  	var clockVal = [currentHours, currentMinutes, currentSeconds, timeOfDay, currentTimeString];
+
   	return clockVal;
 
    	  	
@@ -201,61 +218,7 @@ function updatePeriod ( date, daytype, time ) {
 	var seceonds = time[2]; //seconds
 	time[3]; //timeOfDate
 
-	if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
-		if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
-			return "1st Period";
-		}
-		
-		if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
-			return "2nd Period";
-		}
-		
-		if ((time[0] == 12) && ((time[1] > 07) || (time[1] <= 38))){
-			return "Period 3A";
-		}
-		
-		if (((time[0] == 12) && (time[1] >= 42)) || ((time[0] == 01) && (time[1] <= 12))){
-			return "Period 3B";
-		}
-		
-		if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
-			return "4th Period";
-		}
-		
-		if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
-			return "5th Period";
-		}
-		
-	}
-	
-	else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") {
-		if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
-			return "6th Period";
-		}
-		
-		if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
-			return "7th Period";
-		}
-		
-		if ((time[0] == 12) && ((time[1] > 07) || (time[1] <= 38))){
-			return "Period 3A";
-		}
-		
-		if (((time[0] == 12) && (time[1] >= 42)) || ((time[0] == 01) && (time[1] <= 12))){
-			return "Period 3B";
-		}
-		
-		if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
-			return "8th Period";
-		}
-		
-		if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
-			return "5th Period";
-		}
-		
-	}
-	
-	else if (daytype == "Today is an <span class='dayTypeLetter'>X</span> day.") {
+	if (daytype == "Today is an <span class='dayTypeLetter'>X</span> day.") {
 		if ((time[0] == 9) && (time[1] <= 40)){
 			return "1st Period";
 		}
@@ -293,26 +256,67 @@ function updatePeriod ( date, daytype, time ) {
 		}
 		
 	}
-	
-	else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day." 
-		|| daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
-		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
-			return "School's Out";
-		}
-	}
-	
-	else if (daytype == "Today is an <span class='dayTypeLetter'>X</span> day."){
-		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 12))){
-			return "School's Out";
-		}
-	}
+
+//	else if (daytype == "Today is an <span class='dayTypeLetter'>X</span> day."){
+//		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 12))){
+//			return "School's Out";
+//		}
+//	}
 	
 	else if (daytype == "No School"){
 		return "No School"
 	}
-	
-	return " ";
+	else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day." 
+		|| daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+			
+		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
+			return "School's Out";
+		}
+
+		if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
+				if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+					return "1st Period";
+				}
+				else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") { 
+					return "6th Period";
+				}
+		}
+		
+		else if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
+				if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+					return "2nd Period";
+				}
+				else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") { 
+					return "7th Period";
+				}
+		}
+		
+		else if ((time[0] == 12) && ((time[1] > 07) || (time[1] <= 38))){
+			return "Period 3A";
+		}
+		
+		else if (((time[0] == 12) && (time[1] >= 42)) || ((time[0] == 01) && (time[1] <= 12))){
+			return "Period 3B";
+		}
+		
+		else if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
+				if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+					return "4th Period";
+				}
+				else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") { 
+					return "8th Period";
+				}
+		}
+		
+		else if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
+			return "5th Period";
+		}
+		else {
+			return "Passing Period";
+		}
+	}
 }
+
 
 // function daysOfPeaceNumberScript (spreadsheetID){
 	
