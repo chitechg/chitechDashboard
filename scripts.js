@@ -6,6 +6,9 @@
 $(document).ready(function()
 {
 	
+	var globalTime;
+	var globalPeriod;
+	
 	refreshAt(00,00,00);
   	var countdownSec = -1;
 	
@@ -20,25 +23,25 @@ $(document).ready(function()
 		
 		countdownSec -= 1;
 		
-	   var globalTime = updateClock();
+	   globalTime = updateClock();
 	   $("#clock").html(globalTime[4]);
 	  
-	   var globalPeriod = updatePeriod(globalDate, globalDayType, globalTime);
+	   globalPeriod = updatePeriod(globalDate, globalDayType, globalTime);
 	   $("#period").html(globalPeriod);
 	   
-	   if (globalPeriod == "Passing Period"){
+	   //if (globalPeriod == "Passing Period"){
 	   		
-	   		if((countdownSec <= 240) && (countdownSec>=0)){
-				$("#countdownPrompt").html("Seconds Left in Passing Period: ");
-	   			$("#countdown").html(countdownSec);
-	   		}
-	   		else if (countdownSec < 0){
-	   			countdownSec = 240;
-	   		}
-	   }
-		else{
+	   	//	if((countdownSec <= 240) && (countdownSec>=0)){
+		//		$("#countdownPrompt").html("Seconds Left in Passing Period: ");
+	   	//		$("#countdown").html(countdownSec);
+	   	//	}
+	   	//	else if (countdownSec < 0){
+	   	//		countdownSec = 240;
+	   //		}
+	  // }
+	//	else{
 		 $("#countdown").html("");
-	   		}
+	   	//	}
 
 
 	}, 1000);
@@ -48,9 +51,9 @@ $(document).ready(function()
 function updateDate () {
 	//eventually calls to updateDayType
 	//Date and Day Type script
-	var monthNames = [ "January", "February", "March", "April", "May", "June",
-	    "July", "August", "September", "October", "November", "December" ];
-	var dayNames= ["Sun","Mon","Tues","Wed","Thurs","Fri","Satur"];
+	var monthNames = [ "Jan.", "Feb.", "March", "April", "May", "June",
+	    "July", "August", "Sept.", "Oct.", "Nov.", "Dec." ];
+	var dayNames= ["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"];
 	
 	var newDate = new Date();
 	newDate.setDate(newDate.getDate());  
@@ -149,32 +152,34 @@ function updateDayType (ScheduleCheck){
 			|| ScheduleCheck == '8/30'   
 			|| ScheduleCheck == '1/21'   // Exhibition
 			){
-	  message = "Today has a Modified schedule";
+	  message = "Modified schedule";
 	} 
 	
 	//abnormal A day check
 	else if ( ScheduleCheck == '9/6'   
 			|| ScheduleCheck == '9/8'   
 			){
-		message = "Today is an <span class='dayTypeLetter'>A</span> day.";
+		message = "<span class='dayTypeLetter'>A</span> day.";
 	}
 	else if ( ScheduleCheck == '9/7'   
 			|| ScheduleCheck == '9/9'   
 			){
-		message = "Today is an <span class='dayTypeLetter'>B</span> day.";
+		message = "<span class='dayTypeLetter'>B</span> day.";
 	}
 	  else if(newDate.getDay() == 1 || newDate.getDay() == 3){
-	  message = "Today is an <span class='dayTypeLetter'>A</span> day.";
+	  message = "<span class='dayTypeLetter'>A</span> day.";
 	} else if(newDate.getDay() == 2 || newDate.getDay() == 4){
-	  message = "Today is a <span class='dayTypeLetter'>B</span> day.";
+	  message = "<span class='dayTypeLetter'>B</span> day.";
 	} else if(newDate.getDay() == 5){
-	  message = "Today is an <span class='dayTypeLetter'>X</span> day.";
+	  message = "<span class='dayTypeLetter'>X</span> day.";
 	} else if(newDate.getDay() == 0 || newDate.getDay() == 6){
 	  message = "No School";
 	} 
 	
 	return message;
 }
+
+
 
 
 
@@ -218,7 +223,7 @@ function updatePeriod ( date, daytype, time ) {
 	var seceonds = time[2]; //seconds
 	time[3]; //timeOfDate
 
-	if (daytype == "Today is an <span class='dayTypeLetter'>X</span> day.") {
+	if (daytype == "<span class='dayTypeLetter'>X</span> day.") {
 		if ((time[0] == 9) && (time[1] <= 40)){
 			return "1st Period";
 		}
@@ -266,27 +271,27 @@ function updatePeriod ( date, daytype, time ) {
 	else if (daytype == "No School"){
 		return "No School"
 	}
-	else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day." 
-		|| daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+	else if (daytype == "<span class='dayTypeLetter'>B</span> day." 
+		|| daytype == "<span class='dayTypeLetter'>A</span> day.") {
 			
 		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
 			return "School's Out";
 		}
 
 		if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
-				if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
 					return "1st Period";
 				}
-				else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") { 
+				else if (daytype == "<span class='dayTypeLetter'>B</span> day.") { 
 					return "6th Period";
 				}
 		}
 		
 		else if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
-				if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
 					return "2nd Period";
 				}
-				else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") { 
+				else if (daytype == "<span class='dayTypeLetter'>B</span> day.") { 
 					return "7th Period";
 				}
 		}
@@ -300,10 +305,10 @@ function updatePeriod ( date, daytype, time ) {
 		}
 		
 		else if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
-				if (daytype == "Today is an <span class='dayTypeLetter'>A</span> day.") {
+				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
 					return "4th Period";
 				}
-				else if (daytype == "Today is a <span class='dayTypeLetter'>B</span> day.") { 
+				else if (daytype == "<span class='dayTypeLetter'>B</span> day.") { 
 					return "8th Period";
 				}
 		}
