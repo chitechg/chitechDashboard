@@ -41,7 +41,7 @@ $(document).ready(function()
 	   			countdownSec = 2700;
 	   		}
 	   }
-	   else if ((globalDayType = "A")||(globalDayType="B") 
+	   else if ((globalDayType == "A")||(globalDayType=="B") 
 			&&(globalPeriod == "1st Period")
 			||(globalPeriod == "2nd Period")
 			||(globalPeriod == "4th Period")
@@ -54,7 +54,7 @@ $(document).ready(function()
 	   			countdownSec = 5400;
 	   		}
 	   }
-	   else if ((globalDayType = "X") 
+	   else if ((globalDayType == "X") 
 			&&(globalPeriod == "1st Period")
 			||(globalPeriod == "2nd Period")
 			||(globalPeriod == "4th Period")
@@ -67,10 +67,18 @@ $(document).ready(function()
 	   			countdownSec = 2400;
 	   		}
 	   }
+	   else if (globalglobalPeriode == "School's Out") 
+	   {
+	   		
+	   		if (countdownSec < 0){
+	   			countdownSec = -1;
+	   		}
+	   }
 	   
 		else{
 			$("#countdownPrompt").html("");
 			$("#countdown").html("");
+			countdownSec = -1;
 	   	}
 
 		$("#countdown").html(Math.floor(countdownSec/60));
