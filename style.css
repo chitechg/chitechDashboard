@@ -3,7 +3,7 @@
 body{
     padding: 0;
     margin: 0;
-    background-color: #674172;
+    background-color: #eee;
     width:100%;
     height:auto;
 }
@@ -12,12 +12,10 @@ body{
 .dashboard {
     background-color: #eee;
     font-size: 4vw;
-    color:#674172;
+    color:#eee;
     font-family: 'Raleway', sans-serif;
     padding:10px;
-    height:80%;
-    margin-top: 5%;
-    margin-bottom:5%;
+    height:auto;
 }
 
 .topContainer{
@@ -38,11 +36,15 @@ iframe{
     border-left:2px solid #999;
     margin-right:15px;
     font-size: 3vw;
-    height: 80%;
+    height: 10em;
     width:40%;
     align-content:center;
     margin-top:10%;
     margin-bottom:10%;
+    margin-left:2%;
+    background-color: #674172;
+    padding-right: 1%;
+    border-radius: 10px;
 }
 
 .announcement{

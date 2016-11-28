@@ -56,6 +56,22 @@ $(document).ready(function()
 	   			countdownSec = 5400;
 	   		}
 	   }
+	   else if ((globalDayType = "X") 
+			&&(globalPeriod == "1st Period")
+			||(globalPeriod == "2nd Period")
+			||(globalPeriod == "4th Period")
+			||(globalPeriod == "6th Period")
+			||(globalPeriod == "7th Period")
+			||(globalPeriod == "8th Period"))
+	   {
+	   		
+	   		if((countdownSec <= 2400) && (countdownSec >=0)){
+	   			$("#countdown").html(Math.floor(countdownSec/60));
+	   		}
+	   		else if (countdownSec < 0){
+	   			countdownSec = 2400;
+	   		}
+	   }
 		else{
 			$("#countdownPrompt").html("");
 			$("#countdown").html("");
