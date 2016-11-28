@@ -40,6 +40,16 @@ $(document).ready(function()
 	   			countdownSec = 240;
 	   		}
 	   }
+	   else if ((globalPeriod == "5th Period"))
+	   {
+	   		
+	   		if((countdownSec <= 2700) && (countdownSec >=0)){
+	   			$("#countdown").html(Math.floor(countdownSec/60));
+	   		}
+	   		else if (countdownSec < 0){
+	   			countdownSec = 2700;
+	   		}
+	   }
 	   else if ((globalDayType = "A")||(globalDayType="B") 
 			&&(globalPeriod == "1st Period")
 			||(globalPeriod == "2nd Period")
@@ -72,6 +82,7 @@ $(document).ready(function()
 	   			countdownSec = 2400;
 	   		}
 	   }
+	   
 		else{
 			$("#countdownPrompt").html("");
 			$("#countdown").html("");
