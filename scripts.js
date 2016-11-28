@@ -21,7 +21,7 @@ $(document).ready(function()
 	
 	window.setInterval(function(){
 		
-		//countdownSec -= 1;
+		countdownSec -= 1;
 		
 	   globalTime = updateClock();
 	   $("#clock").html(globalTime[4]);
@@ -29,19 +29,37 @@ $(document).ready(function()
 	   globalPeriod = updatePeriod(globalDate, globalDayType, globalTime);
 	   $("#period").html(globalPeriod);
 	   
-	   //if (globalPeriod == "Passing Period"){
+	   $("#countdownPrompt").html("Minutes Left: ");
+	   
+	   if (globalPeriod == "Passing Period"){
 	   		
-	   	//	if((countdownSec <= 240) && (countdownSec>=0)){
-		//		$("#countdownPrompt").html("Seconds Left in Passing Period: ");
-	   	//		$("#countdown").html(countdownSec);
-	   	//	}
-	   	//	else if (countdownSec < 0){
-	   	//		countdownSec = 240;
-	   //		}
-	  // }
-	//	else{
-		 $("#countdown").html("");
-	   	//	}
+	   		if((countdownSec <= 240) && (countdownSec >=0)){
+	   			$("#countdown").html(Math.floor(countdownSec/60));
+	   		}
+	   		else if (countdownSec < 0){
+	   			countdownSec = 240;
+	   		}
+	   }
+	   else if ((globalDayType = "A")||(globalDayType="B") 
+			&&(globalPeriod == "1st Period")
+			||(globalPeriod == "2nd Period")
+			||(globalPeriod == "4th Period")
+			||(globalPeriod == "6th Period")
+			||(globalPeriod == "7th Period")
+			||(globalPeriod == "8th Period"))
+	   {
+	   		
+	   		if((countdownSec <= 5400) && (countdownSec >=0)){
+	   			$("#countdown").html(Math.floor(countdownSec/60));
+	   		}
+	   		else if (countdownSec < 0){
+	   			countdownSec = 5400;
+	   		}
+	   }
+		else{
+			$("#countdownPrompt").html("");
+			$("#countdown").html("");
+	   	}
 
 
 	}, 1000);

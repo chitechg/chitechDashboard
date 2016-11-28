@@ -14,7 +14,7 @@ body{
     font-size: 4vw;
     color:#674172;
     font-family: 'Raleway', sans-serif;
-    padding:30px;
+    padding:10px;
     height:80%;
     margin-top: 5%;
     margin-bottom:5%;
@@ -90,7 +90,10 @@ iframe{
 #countdownPrompt{
     font-size: 1.8vw;
 }
+#period{
+    font-size: 1.5em;
+}
 
 #countdown{
-    font-size: 5vw;
+    font-size: 2em;
 }
