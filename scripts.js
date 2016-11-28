@@ -21,7 +21,7 @@ $(document).ready(function()
 	
 	window.setInterval(function(){
 		
-		countdownSec -= 1;
+		//countdownSec -= 1;
 		
 	   globalTime = updateClock();
 	   $("#clock").html(globalTime[4]);
@@ -274,9 +274,7 @@ function updatePeriod ( date, daytype, time ) {
 	else if (daytype == "<span class='dayTypeLetter'>B</span> day." 
 		|| daytype == "<span class='dayTypeLetter'>A</span> day.") {
 			
-		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
-			return "School's Out";
-		}
+		
 
 		if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
 				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
@@ -315,6 +313,9 @@ function updatePeriod ( date, daytype, time ) {
 		
 		else if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
 			return "5th Period";
+		}
+		else if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
+			return "School's Out";
 		}
 		else {
 			return "Passing Period";
