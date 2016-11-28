@@ -1,8 +1,6 @@
 //Set to wait until entire page is loaded before starting, to ensure eveyrthing syncs up. 
 //Refreshes every 1000ms AKA every second.
 
-//Should be able to make this more efficient by having it refresh DayType and Date only after midnight
-
 $(document).ready(function()
 {
 	
@@ -33,20 +31,13 @@ $(document).ready(function()
 	   
 	   if (globalPeriod == "Passing Period"){
 	   		
-	   		if((countdownSec <= 240) && (countdownSec >=0)){
-	   			$("#countdown").html(Math.floor(countdownSec/60));
-	   		}
-	   		else if (countdownSec < 0){
+	   		if (countdownSec < 0){
 	   			countdownSec = 240;
 	   		}
 	   }
 	   else if ((globalPeriod == "5th Period"))
 	   {
-	   		
-	   		if((countdownSec <= 2700) && (countdownSec >=0)){
-	   			$("#countdown").html(Math.floor(countdownSec/60));
-	   		}
-	   		else if (countdownSec < 0){
+	   		if (countdownSec < 0){
 	   			countdownSec = 2700;
 	   		}
 	   }
@@ -59,10 +50,7 @@ $(document).ready(function()
 			||(globalPeriod == "8th Period"))
 	   {
 	   		
-	   		if((countdownSec <= 5400) && (countdownSec >=0)){
-	   			$("#countdown").html(Math.floor(countdownSec/60));
-	   		}
-	   		else if (countdownSec < 0){
+	   		if (countdownSec < 0){
 	   			countdownSec = 5400;
 	   		}
 	   }
@@ -75,10 +63,7 @@ $(document).ready(function()
 			||(globalPeriod == "8th Period"))
 	   {
 	   		
-	   		if((countdownSec <= 2400) && (countdownSec >=0)){
-	   			$("#countdown").html(Math.floor(countdownSec/60));
-	   		}
-	   		else if (countdownSec < 0){
+	   		if (countdownSec < 0){
 	   			countdownSec = 2400;
 	   		}
 	   }
@@ -88,6 +73,7 @@ $(document).ready(function()
 			$("#countdown").html("");
 	   	}
 
+		$("#countdown").html(Math.floor(countdownSec/60));
 
 	}, 1000);
    
