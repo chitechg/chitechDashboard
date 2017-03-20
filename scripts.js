@@ -1,6 +1,7 @@
 //Set to wait until entire page is loaded before starting, to ensure eveyrthing syncs up. 
 //Refreshes every 1000ms AKA every second.
 
+
 $(document).ready(function()
 {
 	
@@ -67,7 +68,7 @@ $(document).ready(function()
 	   			countdownSec = 2400;
 	   		}
 	   }
-	   else if (globalglobalPeriode == "School's Out") 
+	   else if (globalPeriod == "School's Out") 
 	   {
 	   		
 	   		if (countdownSec < 0){
@@ -86,6 +87,36 @@ $(document).ready(function()
 	}, 1000);
    
 });
+
+function updateClock ( )
+ 	{
+ 	var currentTime = new Date ( );
+  	var currentHours = currentTime.getHours ( );
+  	var currentMinutes = (currentTime.getMinutes ( ));
+  	var currentSeconds = currentTime.getSeconds ( );
+
+  	// Pad the minutes and seconds with leading zeros, if required
+  	currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+  	currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+  	// Choose either "AM" or "PM" as appropriate
+  	var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+
+  	// Convert the hours component to 12-hour format if needed
+  	currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+  	// Convert an hours component of "0" to "12"
+  	currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+  	// Compose the string for display
+  	var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+  	
+  	var clockVal = [currentHours, currentMinutes, currentSeconds, timeOfDay, currentTimeString];
+
+  	return clockVal;
+
+   	  	
+ }
 
 function updateDate () {
 	//eventually calls to updateDayType
@@ -106,6 +137,146 @@ function updateDate () {
 	var currentDateString = todayDay + ", " + todayMonth + ' ' + todayDate + ' ';
 	
 	return currentDateString;
+	
+}
+
+//period is broken
+function updatePeriod ( date, daytype, time ) {
+
+	date;
+	daytype;
+	var hours = time[0]; //hours
+	var minute = time[1]; //minutes
+	var seceonds = time[2]; //seconds
+	time[3]; //timeOfDate
+
+	if (daytype == "<span class='dayTypeLetter'>X</span> day.") {
+		return XDaySchedule( time );
+	}
+
+	else if (daytype == "<span class='dayTypeLetter'>A</span> day.")
+	{
+		return ADaySchedule( time );
+	}
+	else if (daytype == "<span class='dayTypeLetter'>B</span> day.")
+	{
+		return BDaySchedule( time );
+	}
+	else if (daytype == "No School"){
+		return "No School"
+	}
+
+}
+
+
+function ADaySchedule( time )
+{
+	if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
+			return "1st Period";
+	}
+	
+	else if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
+			return "2nd Period";
+	}
+	else if ((time[0] == 12) && ((time[1] > 07) || (time[1] <= 38))){
+			return "Period 3A";
+	}
+		
+	else if (((time[0] == 12) && (time[1] >= 42)) || ((time[0] == 01) && (time[1] <= 12))){
+		return "Period 3B";
+	}
+		
+	else if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
+		return "4th Period";
+	}
+		
+	else if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
+		return "5th Period";
+	}
+	else if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
+		return "School's Out";
+	}
+	else {
+		return "Passing Period";
+	}
+}
+
+
+function BDaySchedule( time )
+{
+	if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
+			return "6th Period";
+	}
+	
+	else if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
+			return "7th Period";
+	}
+	else if ((time[0] == 12) && ((time[1] > 07) || (time[1] <= 38))){
+			return "Period 3A";
+	}
+		
+	else if (((time[0] == 12) && (time[1] >= 42)) || ((time[0] == 01) && (time[1] <= 12))){
+		return "Period 3B";
+	}
+		
+	else if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
+		return "8th Period";
+	}
+		
+	else if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
+		return "5th Period";
+	}
+	else if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
+		return "School's Out";
+	}
+	else {
+		return "Passing Period";
+	}
+}
+
+function XDaySchedule ( time )
+{
+	if ((time[0] == 9) && (time[1] <= 40)){
+		return "1st Period";
+	}
+	
+	else if (((time[0] == 9) && (time[1] >= 44)) || ((time[0] == 1) && (time[1] <= 24))){
+		return "2nd Period";
+	}
+	
+	else if (((time[0] == 10) && (time[1] >= 28)) || ((time[0] == 11) && (time[1] <= 07))){
+		return "6th Period";
+	}
+	
+	else if (((time[0] == 11) && (time[1] >= 12)) || ((time[0] == 11) && (time[1] <= 52))){
+		return "7th Period";
+	}
+	
+	else if (((time[0] == 11) && (time[1] >= 56)) || ((time[0] == 12) && (time[1] <= 26))){
+		return "Period 3A";
+	}
+	
+	else if (((time[0] == 12) && (time[1] >= 30)) || ((time[0] == 01))){
+		return "Period 3B";
+	}
+	
+	else if (((time[0] == 01) && (time[1] >= 04)) || ((time[0] == 01) && (time[1] <= 44))){
+		return "4th Period";
+	}
+	
+	else if (((time[0] == 01) && (time[1] >= 48)) || ((time[0] == 02) && (time[1] <= 28))){
+		return "4th Period";
+	}
+	
+	else if (((time[0] == 02) && (time[1] >= 32)) || ((time[0] == 03) && (time[1] <= 12))){
+		return "5th Period";
+	}
+	else if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 13))){
+		return "School's Out";
+	}
+	else {
+		return "Passing Period";
+	}
 	
 }
 
@@ -217,151 +388,6 @@ function updateDayType (ScheduleCheck){
 	
 	return message;
 }
-
-
-
-
-
-function updateClock ( )
- 	{
- 	var currentTime = new Date ( );
-  	var currentHours = currentTime.getHours ( );
-  	var currentMinutes = (currentTime.getMinutes ( ));
-  	var currentSeconds = currentTime.getSeconds ( );
-
-  	// Pad the minutes and seconds with leading zeros, if required
-  	currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-  	currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-
-  	// Choose either "AM" or "PM" as appropriate
-  	var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
-
-  	// Convert the hours component to 12-hour format if needed
-  	currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-
-  	// Convert an hours component of "0" to "12"
-  	currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-
-  	// Compose the string for display
-  	var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-  	
-  	var clockVal = [currentHours, currentMinutes, currentSeconds, timeOfDay, currentTimeString];
-
-  	return clockVal;
-
-   	  	
- }
-
-//period is broken
-function updatePeriod ( date, daytype, time ) {
-
-	date;
-	daytype;
-	var hours = time[0]; //hours
-	var minute = time[1]; //minutes
-	var seceonds = time[2]; //seconds
-	time[3]; //timeOfDate
-
-	if (daytype == "<span class='dayTypeLetter'>X</span> day.") {
-		if ((time[0] == 9) && (time[1] <= 40)){
-			return "1st Period";
-		}
-		
-		if (((time[0] == 9) && (time[1] >= 44)) || ((time[0] == 1) && (time[1] <= 24))){
-			return "2nd Period";
-		}
-		
-		if (((time[0] == 10) && (time[1] >= 28)) || ((time[0] == 11) && (time[1] <= 07))){
-			return "6th Period";
-		}
-		
-		if (((time[0] == 11) && (time[1] >= 12)) || ((time[0] == 11) && (time[1] <= 52))){
-			return "7th Period";
-		}
-		
-		if (((time[0] == 11) && (time[1] >= 56)) || ((time[0] == 12) && (time[1] <= 26))){
-			return "Period 3A";
-		}
-		
-		if (((time[0] == 12) && (time[1] >= 30)) || ((time[0] == 01))){
-			return "Period 3B";
-		}
-		
-		if (((time[0] == 01) && (time[1] >= 04)) || ((time[0] == 01) && (time[1] <= 44))){
-			return "4th Period";
-		}
-		
-		if (((time[0] == 01) && (time[1] >= 48)) || ((time[0] == 02) && (time[1] <= 28))){
-			return "4th Period";
-		}
-		
-		if (((time[0] == 02) && (time[1] >= 32)) || ((time[0] == 03) && (time[1] <= 12))){
-			return "5th Period";
-		}
-		
-	}
-
-//	else if (daytype == "Today is an <span class='dayTypeLetter'>X</span> day."){
-//		if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 12))){
-//			return "School's Out";
-//		}
-//	}
-	
-	else if (daytype == "No School"){
-		return "No School"
-	}
-	else if (daytype == "<span class='dayTypeLetter'>B</span> day." 
-		|| daytype == "<span class='dayTypeLetter'>A</span> day.") {
-			
-		
-
-		if ((time[0] == 9) || ((time[0] == 10) && (time[1] <= 30))){
-				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
-					return "1st Period";
-				}
-				else if (daytype == "<span class='dayTypeLetter'>B</span> day.") { 
-					return "6th Period";
-				}
-		}
-		
-		else if (((time[0] == 10) && (time[1] >= 34)) || (time[0] == 11) || ((time[0] == 12) && (time[1] <= 04))){
-				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
-					return "2nd Period";
-				}
-				else if (daytype == "<span class='dayTypeLetter'>B</span> day.") { 
-					return "7th Period";
-				}
-		}
-		
-		else if ((time[0] == 12) && ((time[1] > 07) || (time[1] <= 38))){
-			return "Period 3A";
-		}
-		
-		else if (((time[0] == 12) && (time[1] >= 42)) || ((time[0] == 01) && (time[1] <= 12))){
-			return "Period 3B";
-		}
-		
-		else if (((time[0] == 01) && (time[1] >= 16)) || ((time[0] == 02) && (time[1] <= 46))){
-				if (daytype == "<span class='dayTypeLetter'>A</span> day.") {
-					return "4th Period";
-				}
-				else if (daytype == "<span class='dayTypeLetter'>B</span> day.") { 
-					return "8th Period";
-				}
-		}
-		
-		else if (((time[0] == 02) && (time[1] >= 50)) || ((time[0] == 03) && (time[1] <= 35))){
-			return "5th Period";
-		}
-		else if ((time[0] <= 9) || ((time[0] == 03) && (time[1] >= 35))){
-			return "School's Out";
-		}
-		else {
-			return "Passing Period";
-		}
-	}
-}
-
 
 // function daysOfPeaceNumberScript (spreadsheetID){
 	
