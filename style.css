@@ -46,7 +46,15 @@ iframe{
     padding-right: 1%;
     border-radius: 10px;
 }
-
+.dayType{
+    
+    font-size: 4.5vw;
+    
+}
+#clock{
+    font-size: 4.5vw;
+    
+}
 .announcement{
     text-align: center;
     flex-grow:3;
